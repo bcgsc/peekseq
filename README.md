@@ -1,8 +1,8 @@
 ![Logo](https://github.com/bcgsc/peskseq/blob/main/peskseq-logo.png)
 
-# peskseq : Protein Evaluation System with a K-mer approach
-## De novo protein-coding potential calculator 
-### 2023
+# peskseq
+## Protein Evaluation System with a K-mer approach
+### De novo protein-coding potential calculator 
 
 
 ## Contents
