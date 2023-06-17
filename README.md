@@ -1,7 +1,7 @@
 ![Logo](https://github.com/bcgsc/peskseq/blob/main/peskseq-logo.png)
 
 # peskseq
-## Protein Evaluation System in [DNA/RNA] SEQuences, using a K-mer approach
+## Protein Evaluation System in [DNA/RNA] SEQuences, using K-mers
 ### De novo protein-coding potential calculator 
 
 
