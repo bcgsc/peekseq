@@ -5,7 +5,8 @@
 #   rwarren at bcgsc.ca
 
 #NAME
-# cpkseq
+# peskseq : Protein evaluation System with a K-mer approach
+
 
 #SYNOPSIS
 # Identifies DNA regions with coding potential de novo, using a k-mer approach
@@ -15,8 +16,8 @@
 #   We hope this code is useful to you -- Please send comments & suggestions to rwarren * bcgsc.ca
 
 #LICENSE
-#cpkseq Copyright (c) 2023 British Columbia Cancer Agency Branch.  All rights reserved.
-#cpkseq is released under the GNU General Public License v3
+#peskseq Copyright (c) 2023 British Columbia Cancer Agency Branch.  All rights reserved.
+#peskseq is released under the GNU General Public License v3
 
 use strict;
 use Getopt::Std;
@@ -35,7 +36,7 @@ if(! $opt_f){
    print " -k length (option, default: -k $k)\n";
    print " -c genetic code translation table id (option, default: -c $code [standard])\n";
    print " -s min. reference FASTA region [size] (bp) to output (option, default: -s $regsz bp)\n";
-   die " -v output tsv file (option, -v 1==yes -v 0==no [default])\n";
+   die " -v output tsv file (option, -v 1==yes -v 0==no [default])\n\n";
 }
 
 ### Fetch options
@@ -49,7 +50,7 @@ $code = $opt_c if($opt_c);
 
 ###Prepare output
 #-----
-my $fn = "cpkseq_" . $version . "-f_" . $f . "-k" . $k;
+my $fn = "peskseq_" . $version . "-f_" . $f . "-k" . $k;
 my $tsv= $fn . "-frameKmers.tsv";
 
 $fn .= "-s" . $regsz . "-c" . $code;
