@@ -2,7 +2,7 @@
 
 # peskseq
 ## Protein Evaluation System in [DNA/RNA] SEQuences, using K-mers
-### De novo protein-coding potential calculator 
+### De novo protein-coding potential predictor
 
 
 ## Contents
