@@ -37,7 +37,7 @@ cpkseq is developed in PERL and runs on any system where PERL is installed.
 
 ## Install <a name=install></a>
 
-Clone and enter the unikseq directory.
+Clone and enter the cpkseq directory.
 <pre>
 git clone https://github.com/bcgsc/cpkseq
 cd cpkseq
@@ -59,7 +59,7 @@ Refer to the README.md file on how to install and run cpkseq. Read the
 
 Thank you for your [![Stars](https://img.shields.io/github/stars/bcgsc/cpkseq.svg)](https://github.com/bcgsc/cpkseq/stargazers) and for using, developing and promoting this free software!
 
-If you use unikseq in your research, please cite: 
+If you use cpkseq in your research, please cite: 
 
 TBD
 
@@ -155,9 +155,9 @@ ggplot(df, aes(y=coding, x=position, fill = factor(frame))) +
 
 ## License <a name=license></a>
 
-Unikseq Copyright (c) 2020-2023 British Columbia Cancer Agency Branch.  All rights reserved.
+cpkseq Copyright (c) 2020-2023 British Columbia Cancer Agency Branch.  All rights reserved.
 
-Unikseq is released under the GNU General Public License v3
+cpkseq is released under the GNU General Public License v3
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
