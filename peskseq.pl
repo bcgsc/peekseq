@@ -142,25 +142,28 @@ sub printOutput{
 
    my ($initial,$unique,$notunique,$sum,$sumout,$buffer) = (-1,0,0,0,0,0);
    my $s;
-
+   my $lastframe = 0;
+   my $lastframerev = 0;
+   my $lastcodon = "";
    for(my $pos=0;$pos<=(length($seq)-$k);$pos++){
       my $kmer = substr($seq,$pos,$k);
       my $codon = substr($kmer,($k-3),3);
-
+      $lastcodon = $codon;
       $kmer =~ tr/U/T/; ### handles RNA U>>>T
       my $rckmer = &reverseComplement($kmer);
 
       my $frame = ($pos % 3) + 1;
       my $framerev = -1 * $frame;
+      $lastframe = $frame;
+      $lastframerev = $framerev;
 
       my $aamer = &dna2protein($kmer,$codon2aa);
       my $rcaamer = &dna2protein($rckmer,$codon2aa);
 
       my $bit=1;
-      if($aamer=~/\*/ || $aamer=~/X/){
+      if($aamer=~/\*/ || $aamer=~/X/){# stop or end
          $bit=0;
-         my $tmplen = length($s->{$frame}{'seq'});
-         if($tmplen >= $regsz){
+         if(length($s->{$frame}{'seq'}) >= $regsz){
             $s->{$frame}{'seq'} .= $codon;
             $s->{$frame}{'end'} = $pos + $k;
             ###
@@ -181,7 +184,8 @@ sub printOutput{
                }
             }
             ###
-            print DNA ">$head $s->{$frame}{'start'}-$s->{$frame}{'end'} length:$tmplen frame:$frame\n$newnt\n";
+            my $ntlen = length($newnt);
+            print DNA ">$head $s->{$frame}{'start'}-$s->{$frame}{'end'} length:$ntlen frame:$frame\n$newnt\n";
             my $aalen = length($newaa);
             print PEP ">$head $s->{$frame}{'start'}-$s->{$frame}{'end'} length:$aalen frame:$frame\n$newaa\n";
          }
@@ -197,10 +201,9 @@ sub printOutput{
          }##
       }
       my $rcbit=-1;
-      if($rcaamer=~/\*/ || $rcaamer=~/X/){
+      if($rcaamer=~/\*/ || $rcaamer=~/X/){###stop or end
          $rcbit=0;
-         my $tmplen = length($s->{$framerev}{'seq'});
-         if($tmplen >= $regsz){
+         if(length($s->{$framerev}{'seq'}) >= $regsz){
             my $rc = reverseComplement($s->{$framerev}{'seq'});
             my $lcdna = lc($rc);
             my @ntarr = ( $lcdna =~ m/.../g );
@@ -218,7 +221,8 @@ sub printOutput{
                   $newaa .= $aa;
                }
             }
-            print DNA ">$head $s->{$framerev}{'end'}-$s->{$framerev}{'start'} length:$tmplen frame:$framerev\n$newnt\n";
+            my $ntlen = length($newnt);
+            print DNA ">$head $s->{$framerev}{'end'}-$s->{$framerev}{'start'} length:$ntlen frame:$framerev\n$newnt\n";
             my $aalen = length($newaa);
             print PEP ">$head $s->{$framerev}{'end'}-$s->{$framerev}{'start'} length:$aalen frame:$framerev\n$newaa\n";
          }
@@ -233,10 +237,65 @@ sub printOutput{
             $s->{$framerev}{'end'} = $pos + $k;
          }
       }
-
       print TSV "$head\t$pos\t$frame\t$bit\n$head\t$pos\t$framerev\t$rcbit\n" if($tsvflag);
-
-   }
+   }###end of sequence
+   ###print what is in the buffer (like a stop, for all 3 frames)
+   my @frames = (1,2,3);
+   foreach my $fr(@frames){
+      if(length($s->{$fr}{'seq'}) >= $regsz){
+         #$s->{$lastframe}{'seq'} .= $lastcodon;
+         #$s->{$lastframe}{'end'} = length($seq);
+         ###
+         my $lcdna = lc($s->{$fr}{'seq'});
+         my @ntarr = ( $lcdna =~ m/.../g );
+         my $flag=0;
+         my $newnt="";
+         my $newaa="";
+         foreach my $cd (@ntarr){
+            my $aa = lc(&dna2protein($cd,$codon2aa));
+            if(defined $startcodon->{$cd}){$flag=1;}
+            if($flag){
+               $newnt .= uc($cd);
+               $newaa .= uc($aa);
+            }else{
+               $newnt .= $cd;
+               $newaa .= $aa;
+            }
+         }
+         ###
+         my $ntlen = length($newnt);
+         print DNA ">$head $s->{$fr}{'start'}-$s->{$fr}{'end'} length:$ntlen frame:$fr\n$newnt\n";
+         my $aalen = length($newaa);
+         print PEP ">$head $s->{$fr}{'start'}-$s->{$fr}{'end'} length:$aalen frame:$fr\n$newaa\n";
+      }#length >= user-defined threshold
+   }#3 frames
+   ###handle reverse
+   my @framesrec=(-1,-2,-3);
+   foreach my $fr(@framesrec){
+      if(length($s->{$fr}{'seq'}) >= $regsz){
+         my $rc = reverseComplement($s->{$fr}{'seq'});
+         my $lcdna = lc($rc);
+         my @ntarr = ( $lcdna =~ m/.../g );
+         my $flag=0;
+         my $newnt="";
+         my $newaa="";
+         foreach my $cd (@ntarr){
+            my $aa = lc(&dna2protein($cd,$codon2aa));
+            if(defined $startcodon->{$cd}){$flag=1;}
+            if($flag){
+               $newnt .= uc($cd);
+               $newaa .= uc($aa);
+            }else{
+               $newnt .= $cd;
+               $newaa .= $aa;
+            }
+         }
+         my $ntlen = length($newnt);
+         print DNA ">$head $s->{$fr}{'end'}-$s->{$fr}{'start'} length:$ntlen frame:$fr\n$newnt\n";
+         my $aalen = length($newaa);
+         print PEP ">$head $s->{$fr}{'end'}-$s->{$fr}{'start'} length:$aalen frame:$fr\n$newaa\n";
+      }### length>= user-defined threshold
+   }### all 3 frames rev
 }
 
 #--------------------------------
