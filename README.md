@@ -1,7 +1,7 @@
 ![Logo](https://github.com/bcgsc/peskseq/blob/main/peskseq-logo.png)
 
 # peskseq
-## Protein Evaluation System in [DNA/RNA] SEQuences, using K-mers
+## Protein Estimation System in [DNA/RNA] SEQuences, using K-mers
 ### De novo protein-coding potential predictor
 
 
@@ -52,7 +52,7 @@ If PERL is installed on your system, you're good to go (no additional libraries 
 
 ## Documentation <a name=docs></a>
 
-Refer to the README.md file on how to install and run peskseq. Read the 
+Refer to the README.md file on how to install and run peskseq. 
 
 
 ## Citing peskseq <a name=cite></a>
@@ -107,12 +107,30 @@ TBD
 
 1) TSV file 
 
+   A tab-separated file containing the FASTA header, position, frame and whether the corresponding k-mer encodes a peptide stretch (1 or -1 for plus/minus strands, respectively).
+   header	position	frame	coding
+   ...
+   NZ_CP028101.1   3030    1       0
+   NZ_CP028101.1   3030    -1      -1
+   NZ_CP028101.1   3031    2       0
+   NZ_CP028101.1   3031    -2      0
+   NZ_CP028101.1   3032    3       1
+   NZ_CP028101.1   3032    -3      0
+   NZ_CP028101.1   3033    1       0
+   NZ_CP028101.1   3033    -1      -1
+   NZ_CP028101.1   3034    2       0
+   NZ_CP028101.1   3034    -2      0
+   NZ_CP028101.1   3035    3       1
+   ...
 
-2) FASTA file (*DNA.fa)
+2) FASTA file (*-codingDNA.fa)
 
-   A multi-FASTA 
+   A multi-FASTA with sequence region for any given frames with a corresponding translation in -codingPROTEIN.fa, excised from the original input FASTA. DNA/RNA outside of the initiation codon are soft-masked (i.e., lower case bases).
 
-3) FASTA file (*PROTEIN.fa)
+
+3) FASTA file (*-codingPROTEIN.fa)
+
+   A multi-FASTA with protein translation corresponding the regions in -codingDNA.fa. Residues outside of the initiation amino acid are soft-masked (i.e., lower case residues).
 
 
 4) LOG file (.log)
