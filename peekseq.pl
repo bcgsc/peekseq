@@ -5,7 +5,7 @@
 #   rwarren at bcgsc.ca
 
 #NAME
-# peskseq : Protein evaluation System with a K-mer approach
+# peekseq : Protein Estimation systEm in [DNA/RNA] SEQuences, using K-mers 
 
 
 #SYNOPSIS
@@ -16,8 +16,8 @@
 #   We hope this code is useful to you -- Please send comments & suggestions to rwarren * bcgsc.ca
 
 #LICENSE
-#peskseq Copyright (c) 2023 British Columbia Cancer Agency Branch.  All rights reserved.
-#peskseq is released under the GNU General Public License v3
+#peekseq Copyright (c) 2023 British Columbia Cancer Agency Branch.  All rights reserved.
+#peekseq is released under the GNU General Public License v3
 
 use strict;
 use Getopt::Std;
@@ -50,7 +50,7 @@ $code = $opt_c if($opt_c);
 
 ###Prepare output
 #-----
-my $fn = "peskseq_" . $version . "-f_" . $f . "-k" . $k;
+my $fn = "peekseq_" . $version . "-f_" . $f . "-k" . $k;
 my $tsv= $fn . "-frameKmers.tsv";
 
 $fn .= "-s" . $regsz . "-c" . $code;

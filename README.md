@@ -61,8 +61,8 @@ Thank you for your [![Stars](https://img.shields.io/github/stars/bcgsc/peekseq.s
 
 If you use peekseq in your research, please cite: 
 
-
 TBD
+
 
 ## Credits <a name=credits></a>
 <pre>
@@ -84,17 +84,48 @@ Usage: ./peekseq.pl
 Notes:
 <pre>
 
-
  -f FASTA (DNA/RNA) file (required)
+ Single or Multi-FASTA file to predict open-reading frames from 
 
  -k length (option, default: -k 90)
+ The (nucleotide) k-mer length (nt)
 
  -c genetic code translation table id (option, default: -c 1 [standard])
+ The table to use for translation. Please refer to:
+ https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=c#top
+ <pre> 
+    1. The Standard Code
+    2. The Vertebrate Mitochondrial Code
+    3. The Yeast Mitochondrial Code
+    4. The Mold, Protozoan, and Coelenterate Mitochondrial Code and the Mycoplasma/Spiroplasma Code
+    5. The Invertebrate Mitochondrial Code
+    6. The Ciliate, Dasycladacean and Hexamita Nuclear Code
+    9. The Echinoderm and Flatworm Mitochondrial Code
+    10. The Euplotid Nuclear Code
+    11. The Bacterial, Archaeal and Plant Plastid Code
+    12. The Alternative Yeast Nuclear Code
+    13. The Ascidian Mitochondrial Code
+    14. The Alternative Flatworm Mitochondrial Code
+    16. Chlorophycean Mitochondrial Code
+    21. Trematode Mitochondrial Code
+    22. Scenedesmus obliquus Mitochondrial Code
+    23. Thraustochytrium Mitochondrial Code
+    24. Rhabdopleuridae Mitochondrial Code
+    25. Candidate Division SR1 and Gracilibacteria Code
+    26. Pachysolen tannophilus Nuclear Code
+    27. Karyorelict Nuclear Code
+    28. Condylostoma Nuclear Code
+    29. Mesodinium Nuclear Code
+    30. Peritrich Nuclear Code
+    31. Blastocrithidia Nuclear Code
+    33. Cephalodiscidae Mitochondrial UAA-Tyr Code
+  </pre>
 
  -s min. reference FASTA region [size] (bp) to output (option, default: -s 270 bp)
+  minimum sequence length to output (default is 3 * k nucleotides)  
 
  -v output tsv file (option, -v 1==yes -v 0==no [default])
-
+  boolean, 1/0=yes/no, outputs a tsv file with information for plotting the 6-frame codin potential (see below section Output (1) TSV file) 
 
 </pre>
 
@@ -140,8 +171,9 @@ TBD
 
 ## Algorithm design and implementation <a name=algorithm></a>
 
-TBD
+Peekseq uses words of length k (k-mers) to quickly assess the coding potential simultaneously over the 6 frames, by sliding over each k frame of the input FASTA.
  
+
 ## Quick reference <a name=quickref></a>
 
 TBD
@@ -174,7 +206,7 @@ ggplot(df, aes(y=coding, x=position, fill = factor(frame))) +
 
 ## License <a name=license></a>
 
-peekseq Copyright (c) 2020-2023 British Columbia Cancer Agency Branch.  All rights reserved.
+peekseq Copyright (c) 2023 British Columbia Cancer Agency Branch.  All rights reserved.
 
 peekseq is released under the GNU General Public License v3
 
