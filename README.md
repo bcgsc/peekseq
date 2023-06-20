@@ -29,6 +29,8 @@ peekseq systematically processes the k-mers of a supplied DNA sequence and compu
 
 peekseq is used to quickly survey regions with [protein] coding potential on all 6 frames
 
+It is best suited for evaluating the protein-coding potential of simple DNA sequences, including bacterial gene structures (i.e., it will not predict intron/exon boundaries)
+
 
 ## Implementation and requirements <a name=implementation></a>
 
