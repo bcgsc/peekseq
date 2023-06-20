@@ -122,7 +122,7 @@ Notes:
   </pre>
 
  -s min. reference FASTA region [size] (bp) to output (option, default: -s 270 bp)
-  minimum sequence length to output (default is 3 * k nucleotides)  
+  minimum sequence length to output  
 
  -v output tsv file (option, -v 1==yes -v 0==no [default])
   boolean, 1/0=yes/no, outputs a tsv file with information for plotting the 6-frame codin potential (see below section Output (1) TSV file) 
@@ -132,13 +132,37 @@ Notes:
 ### Test data <a name=data></a>
 ---------
 
-TBD
+<pre>
+1. Go to ./testdata
+(cd testdata)
+
+2. Run peekseq on the provided test data
+
+Example commands for C. maximus mitogenome and SARS-CoV-2 genome:
+/usr/bin/time ../peekseq.pl -f CEMA.fa.gz -k 150 -s 200 -c 2 -v 1
+/usr/bin/time ../peekseq.pl -f SARS.fa.gz -k 150 -s 270 -c 11 -v 1&
+
+These commands will generate four output files for each genome:
+e.g.
+peekseq_v0.0.1-f_CEMA.fa.gz-k150-frameKmers.tsv
+peekseq_v0.0.1-f_CEMA.fa.gz-k150-s200-c2-codingDNA.fa
+peekseq_v0.0.1-f_CEMA.fa.gz-k150-s200-c2-codingPROTEIN.fa
+peekseq_v0.0.1-f_CEMA.fa.gz-k150-s200-c2.log
+
+They should take no more than 1 and 2 seconds, respectively, to run on a MacBook Pro (Catalina10.15.7, 2.6 GHz 6-Core Intel Core i7).
+
+If the run is successful, the peekseq_v0.0.1-f_CEMA.fa.gz-k150-s200-c2-codingDNA.fa output should contain 15 sequences and the peekseq_v0.0.1-f_SARS.fa.gz-k150-s270-c2-codingDNA.fa, 30 sequences.
+
+
+</pre>
+
 
 ## Output  <a name=output></a>
 
 1) TSV file 
 
    A tab-separated file containing the FASTA header, position, frame and whether the corresponding k-mer encodes a peptide stretch (1 or -1 for plus/minus strands, respectively).
+   <pre>
    header	position	frame	coding
    ...
    NZ_CP028101.1   3030    1       0
@@ -153,6 +177,7 @@ TBD
    NZ_CP028101.1   3034    -2      0
    NZ_CP028101.1   3035    3       1
    ...
+   </pre>
 
 2) FASTA file (*-codingDNA.fa)
 
@@ -196,8 +221,7 @@ library(readr)
 library(scales)
 library(ggdark)
 
-df <- read.table('peekseq_v0.0.1-f_CEMA.fa-k150-frameKmers.tsv', sep="\t", header = TRUE)
-
+df <- read.table('peekseq_v0.0.1-f_CEMA.fa.gz-k150-frameKmers.tsv', sep="\t", header = TRUE)
 ggplot(df, aes(y=coding, x=position, fill = factor(frame))) +
   geom_col() +
   scale_fill_manual(values = c("#b35806","#f1a340","#fee0b6","#d8daeb","#998ec3","#542788")) +

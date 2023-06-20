@@ -1,0 +1,16 @@
+
+Running: ../peekseq.pl v0.0.1
+	-k 150
+	-f CEMA.fa.gz
+	-s 200
+	-c 2
+	-v 1
+done.
+------------------------------
+Output in-frame regions >= 200 bp in:
+peekseq_v0.0.1-f_CEMA.fa.gz-k150-s200-c2-codingDNA.fa
+peekseq_v0.0.1-f_CEMA.fa.gz-k150-s200-c2-codingPROTEIN.fa
+
+Output 150-mers frames:
+peekseq_v0.0.1-f_CEMA.fa.gz-k150-frameKmers.tsv
+done.

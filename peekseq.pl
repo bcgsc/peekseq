@@ -108,7 +108,16 @@ sub evalCP{
 
    my ($codon2aa,$startcodon) = &initializeAA($code);
 
-   open(IN,$f) || die "Can't read $f -- fatal.\n";
+   ###Support for compressed files 
+   if($f=~/zip$/i){
+      open(IN,"unzip -p $f|") || die "Error reading $f -- fatal\n";
+   }elsif($f=~/gz$/i || $f=~/gzip$/i){
+      open(IN,"gunzip -c $f|") || die "Error reading $f -- fatal\n";
+   }else{
+      open(IN,$f) || die "Error reading $f -- fatal\n";
+   }
+
+
    while(<IN>){
       s/\r\n/\n/g;### DOS to UNIX
       chomp;
