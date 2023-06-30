@@ -216,18 +216,18 @@ This example predicted coding potential regions is depicted using -k 150 on C. m
 
 R code to generate similar plots
 <pre>
-##coding potential plots, with R (example provided)
+##coding potential plots
 
 library(ggplot2)
-library(readr)
-library(scales)
 library(ggdark)
 
-df <- read.table('peekseq_v0.0.1-f_CEMA.fa.gz-k150-frameKmers.tsv', sep="\t", header = TRUE)
-ggplot(df, aes(y=coding, x=position, fill = factor(frame))) +
-  geom_col() +
+df <- read.table('/Users/rwarren/Documents/GitHub/peekseq/testdata/peekseq_v0.0.1-f_CEMA.fa.gz-k150-frameKmers.tsv', sep="\t", header = TRUE)
+
+p<-ggplot(df, aes(y=coding, x=position, fill = factor(frame))) +
+  geom_col() + 
   scale_fill_manual(values = c("#b35806","#f1a340","#fee0b6","#d8daeb","#998ec3","#542788")) +
-  xlab("White shark mitogenome (ch-CACA1-CM030070.1)") +ylim(-1,1)+ ylab("Coding potential") + dark_theme_gray(base_size = 14)
+  xlab("Cetorhinus maximus [basking shark] mitogenome (Genbank accession KF597303.1)") +ylim(-1,1)+ ylab("Coding potential") + dark_theme_gray(base_size = 14)  # Default
+p + theme(legend.position = "bottom") + guides(fill = guide_legend(title = "Frame", nrow = 1))
 </pre>
 
 ## License <a name=license></a>
