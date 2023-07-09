@@ -25,11 +25,11 @@
 
 ## Description <a name=description></a>
 
-peekseq systematically processes the k-mers of a supplied DNA sequence and computes regions with coding potential, using target codon translation tables
+peekseq systematically processes the k-mers of a supplied DNA/RNA sequence and computes regions with coding potential, using target codon translation tables
 
 peekseq is used to quickly survey regions with [protein] coding potential on all 6 frames, simultaneously
 
-It is best suited for evaluating the protein-coding potential of simple DNA sequences, including bacterial gene structures (i.e., it will not predict intron/exon boundaries)
+peekseq is best suited for evaluating the protein-coding potential of simple DNA sequences, including bacterial gene structures (i.e., it will not predict intron/exon boundaries, etc.)
 
 
 ## Implementation and requirements <a name=implementation></a>
