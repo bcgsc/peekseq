@@ -1,0 +1,16 @@
+
+Running: ../peekseq.pl v0.0.1
+	-k 150
+	-f SARS.fa.gz
+	-s 270
+	-c 11
+	-v 1
+done.
+------------------------------
+Output in-frame regions >= 270 bp in:
+peekseq_v0.0.1-f_SARS.fa.gz-k150-s270-c11-codingDNA.fa
+peekseq_v0.0.1-f_SARS.fa.gz-k150-s270-c11-codingPROTEIN.fa
+
+Output 150-mers frames:
+peekseq_v0.0.1-f_SARS.fa.gz-k150-frameKmers.tsv
+done.
