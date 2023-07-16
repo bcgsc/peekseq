@@ -1,3 +1,9 @@
+[![Release](https://img.shields.io/github/release/bcgsc/peekseq.svg)](https://github.com/bcgsc/peekseq/releases)
+[![Downloads](https://img.shields.io/github/downloads/bcgsc/peekseq/total?logo=github)](https://github.com/bcgsc/peekseq/releases/download/v1.0.0/peekseq-0.0.1.tar.gz)
+[![Conda](https://img.shields.io/conda/dn/bioconda/unikseq?label=Conda)](https://anaconda.org/bioconda/peekseq)
+[![Issues](https://img.shields.io/github/issues/bcgsc/peekseq.svg)](https://github.com/bcgsc/peekseq/issues)
+Thank you for your [![Stars](https://img.shields.io/github/stars/bcgsc/peekseq.svg)](https://github.com/bcgsc/peekseq/stargazers)
+
 ![Logo](https://github.com/bcgsc/peekseq/blob/main/peekseq-logo.png)
 
 # peekseq
@@ -45,6 +51,10 @@ git clone https://github.com/bcgsc/peekseq
 cd peekseq
 </pre>
 
+or using conda:
+<pre>
+conda install -c bioconda peekseq
+</pre>
 
 
 ## Dependencies <a name=dep></a>
