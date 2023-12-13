@@ -249,7 +249,7 @@ This example predicted coding potential regions within the SARS-CoV-2 genome (k1
 
 ## License <a name=license></a>
 
-peekseq Copyright (c) 2023 British Columbia Cancer Agency Branch.  All rights reserved.
+peekseq Copyright (c) 2023-present British Columbia Cancer Agency Branch.  All rights reserved.
 
 peekseq is released under the GNU General Public License v3
 
