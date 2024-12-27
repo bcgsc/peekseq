@@ -150,7 +150,7 @@ Notes:
 
 Example commands for C. maximus mitogenome and SARS-CoV-2 genome:
 /usr/bin/time ../peekseq.pl -f CEMA.fa.gz -k 150 -s 200 -c 2 -v 1
-/usr/bin/time ../peekseq.pl -f SARS.fa.gz -k 150 -s 270 -c 11 -v 1&
+/usr/bin/time ../peekseq.pl -f SARS.fa.gz -k 150 -s 270 -c 11 -v 1
 
 These commands will generate four output files for each genome:
 e.g.
@@ -244,7 +244,7 @@ p + theme(legend.position = "bottom") + guides(fill = guide_legend(title = "Fram
 ![peekseqPlot](https://github.com/bcgsc/peekseq/blob/main/SARS2cpPlot.png)
 This example predicted coding potential regions within the SARS-CoV-2 genome (k150) at the pandemic onset (Severe acute respiratory syndrome coronavirus 2 isolate Wuhan-Hu-1) with the following command:
 <pre>
-/usr/bin/time ./peekseq.pl -f SARS.fa.gz -k 150 -s 270 -c 11 -v 1&
+/usr/bin/time ./peekseq.pl -f SARS.fa.gz -k 150 -s 270 -c 11 -v 1
 </pre>
 
 ## License <a name=license></a>
